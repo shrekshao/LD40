@@ -5,17 +5,32 @@ using UnityEngine;
 public class Cannon : MonoBehaviour {
 
 
-    public Rigidbody m_rigidBodyTank;
+    Rigidbody m_rigidBodyTank;
 
-	// Use this for initialization
-	void Start () {
-        StartCoroutine(Fire());
-	}
+    private IEnumerator coroutine;
+
+
+    // Use this for initialization
+    void Start () {
+        
+    }
 	
-	// Update is called once per frame
-	void Update () {
+	//// Update is called once per frame
+	//void Update () {
 		
-	}
+	//}
+
+    public void Activate(Rigidbody rigidbodyTank)
+    {
+        m_rigidBodyTank = rigidbodyTank;
+        coroutine = Fire();
+        StartCoroutine(coroutine);
+    }
+
+    public void Deactivate()
+    {
+        StopCoroutine(coroutine);
+    }
 
     IEnumerator Fire()
     {
